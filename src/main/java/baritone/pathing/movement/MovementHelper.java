@@ -20,6 +20,7 @@ package baritone.pathing.movement;
 import baritone.Baritone;
 import baritone.api.IBaritone;
 import baritone.api.Settings;
+import baritone.api.block.TraversableNonFullBlock;
 import baritone.api.pathing.movement.ActionCosts;
 import baritone.api.pathing.movement.MovementStatus;
 import baritone.api.utils.BetterBlockPos;
@@ -331,7 +332,7 @@ public interface MovementHelper extends ActionCosts {
         if (state.isIn(BlockTags.CLIMBABLE)) { // TODO reconsider this
             return true;
         }
-        if (block == Blocks.FARMLAND || block == Blocks.DIRT_PATH) {
+        if (block == Blocks.FARMLAND || block == Blocks.DIRT_PATH || block instanceof TraversableNonFullBlock) {
             return true;
         }
         if (block == Blocks.ENDER_CHEST || block == Blocks.CHEST || block == Blocks.TRAPPED_CHEST) {

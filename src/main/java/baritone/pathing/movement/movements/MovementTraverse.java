@@ -19,6 +19,7 @@ package baritone.pathing.movement.movements;
 
 import baritone.api.IBaritone;
 import baritone.api.Settings;
+import baritone.api.block.TraversingFavourBlock;
 import baritone.api.pathing.movement.MovementStatus;
 import baritone.api.utils.BetterBlockPos;
 import baritone.api.utils.Rotation;
@@ -190,7 +191,7 @@ public class MovementTraverse extends Movement {
                 // Don't check for soul sand, since we can sprint on that too
                 WC *= SPRINT_MULTIPLIER;
             }
-            result.cost = WC + hardness;
+            result.cost = (WC + hardness) * ((destOn.getBlock() instanceof TraversingFavourBlock)?((TraversingFavourBlock)destOn.getBlock()).getTraverseFavour(destOn):1);
             result.oxygenCost = context.oxygenCost(WC / 2 + hardness, srcHeadState)
                         + context.oxygenCost(WC / 2, destHeadState);
         } else {//this is a bridge, so we need to place a block
